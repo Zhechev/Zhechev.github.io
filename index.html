@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>ДеМи</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="libs/jquery.js"></script>
+    <script src="scripts/script.js"></script>
+    <script src="libs/underscore.js"></script>
+
+    <script>tinymce.init({ selector:'textarea' });</script>
+
+</head>
+<body>
+        <div id="wrapper">
+            <header>
+                <a href="index.html"><img src="DEMI.png"/></a>
+                <h1>Вашият блог</h1>
+                <h1 id="loggedInUser"></h1>
+            </header>
+            <nav id="nav-item">
+                <ul>
+                    <li><a href="#" id = "linkHome">Начало</a></li>
+                    <li><a href="#" id = "linkLogin">Вход</a></li>
+                    <li><a href="#" id = "linkRegister">Регистрация</a></li>
+                    <li><a href="#" id="linkListBooks">Списък с постове</a></li>
+                    <li><a href="#" id="linkCreateBook">Създай пост</a></li>
+                    <li><a href="#" id="linkLogout">Излез</a>
+                </ul>
+            </nav>
+            <main>
+                <section id="loadingBox" >Loading...</section>
+                 <section id = "infoBox">Info</section>
+                 <section id = "errorBox">error</section>
+                 <section id = "viewHome">
+                     <h2>Добре дошли</h2>
+                     <div id="textHomeLogged">Забавлявайте се! Блогът е създаден с учебна цел,
+                         Всеки в този блог може да създава пост, ако е регистриран потребител, всеки може да <span class="bolded">изтрива и редактира само своите постове</span>, след като се е логнал.<br /><br />
+                         В този блог са използвани: <span class="bolded">HTML, CSS, JAVASCRIPT, JQUERY, AJAX, Kinvey MBaaS.</span>
+                     </div>
+                     <div id="textHome">В този блог може да публикувате каквото желаете и да споделите своето мнение.
+                         <p class="halloText">За да <span class="bolded">създадете</span>, <span class="bolded">изтриете</span> или <span class="bolded">редактирате</span> Ваш пост, трябва да се регистрирате!</p><br />
+                         В този блог са използвани: <span class="bolded">HTML, CSS, JAVASCRIPT, JQUERY, AJAX, Kinvey MBaaS.</span
+                     </div>
+                     <div id="recentPost"></div>
+                 </section>
+
+                 <section id = "viewLogin">
+                     <h2>Вход:</h2>
+                     <article>
+                         <form id="formLogin" novalidate>
+                             <div id="form">
+                                 <label for="loginUser">Потребителско име:</label><br/>
+                                 <input type="text" id = "loginUser"><br/>
+                                 <label for="loginPass">Парола:</label><br/>
+                                 <input type="password" id = "loginPass">
+                                 <input type="button"  onclick="login()" value="Изпрати" />
+                             </div>
+                         </form>
+                     </article>
+                 </section>
+                <section id = "viewRegister">
+                    <h2>Регистрация:</h2>
+                    <article>
+                        <form id = "formRegister" novalidate>
+                            <div id="form">
+                                <label for="registerUser">Потребителско име:</label><br/>
+                                <input type="text" id = "registerUser" onblur="validate()">
+                                <span id="errorUser"></span> <br />
+                                <label for="fname">Име:</label><br/>
+                                <input type="text" id = "fname"><br/>
+                                <label for="lname">Фамилия:</label><br/>
+                                <input type="text" id = "lname"><br/>
+                                <label for="email">Имейл:</label><br/>
+                                <input type="text" id = "email" onblur="validateEmail()"><br/>
+                                <span id="errorEmail"></span><br />
+                                <label for="registerPass">Парола:</label><br/>
+                                <input type="password" id = "registerPass" onblur="validatePass()">
+                                <span id="errorPass"></span><br />
+                                <label for="confirmpassword">Потвърди парола:</label><br/>
+                                <input type="password" id = "confirmpassword"><br/>
+                                <label for="male">Мъж:</label>
+                                <input type="radio" name="gender" id="male">
+                                <label for="female">Жена:</label>
+                                <input type="radio" name="gender" id="female">
+                                <input type="button"  onclick="register()" value="Изпрати" />
+
+                            </div>
+                        </form>
+                        </article>
+                </section>
+                <section id="viewBooks" >
+                    <h2>Постове:</h2>
+                    <div id="books" />
+                </section>
+                <section id="viewCreateBook">
+                    <h2>Създай нов пост:</h2>
+                    <form id="formCreateBook" novalidate>
+                        <label for="title">Заглавие:</label><br />
+                        <input type="text" id="title" required /><br />
+                        <label for="content">Съдържание:</label><br />
+                        <textarea id="content" rows="10" required></textarea><br />
+                        <input type="submit" value="Създай"/>
+                    </form>
+                </section>
+
+                <section id="vieweditPost">
+                    <h2>Редактирай поста си:</h2>
+                    <form id="formeditPost" novalidate>
+                        <label for="titlee">Заглавие:</label><br />
+                        <input type="hidden" id="id" required />
+                        <input type="text" id="titlee" required /><br />
+                        <label for="contentt">Съдържание:</label><br />
+                        <textarea id="contentt" rows="10" required></textarea><br/>
+                        <input type="button" id="buttoneditPost" onclick="editPost()" value="Промени" />
+                    </form>
+                </section>
+
+
+            </main>
+            <div class="clear"></div>
+            <footer>
+                    <p>© 2016 by Software University Foundation, No Rights Reserved
+                    </p>
+            </footer>
+        </div>
+</body>
+</html>
